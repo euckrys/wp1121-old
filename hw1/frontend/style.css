@@ -1,0 +1,424 @@
+/* body */
+body {
+  background-color: #e0cacc;
+}
+/* body */
+
+/* 標題欄與新增日記卡按鈕 */
+#head-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  grid-auto-rows: minmax(60px, auto);
+  border-bottom-style: solid;
+}
+
+#head {
+  display: grid;
+  place-content: center;
+  grid-column-start: 2;
+  height: 100px;
+}
+
+#head h1 {
+  text-align: center;
+  font-size: 50px;
+  color: #222;
+}
+
+#diary-add {
+  display: grid;
+  place-content: center;
+  margin-left: auto;
+  height: 50%;
+}
+
+#open-new-diary-entry-popup {
+  background-color: #af7379;
+  color: white;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 15px 35px;
+  transition: all 0.3s ease-out;
+}
+
+#open-new-diary-entry-popup:hover {
+  background-color: #f0989c;
+}
+/* 標題欄與新增日記卡按鈕 */
+
+/* 統一popup格式*/
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  overflow: auto;
+  transition: all 0.3s ease-out;
+}
+
+.popup-content {
+  position: relative;
+  background-color: #e7e7e7;
+  margin: 100px auto;
+  padding: 30px;
+  border: 1px solid #888;
+  border-radius: 20px;
+  width: 65%;
+  height: 70%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+/* 統一popup格式 */
+
+/* 統一close格式 */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: black;
+}
+/* 統一close格式 */
+
+/* 去除多餘物件 */
+summary {
+  list-style-type: none;
+}
+/* 去除多餘物件 */
+
+/* filter */
+#filter {
+  appearance: none;
+  border: 0;
+  outline: 0;
+  background: white;
+  box-shadow: none;
+  flex: 1;
+  padding: 1em;
+  cursor: pointer;
+}
+#filter::-ms-expand {
+  display: none;
+}
+#filter option:checked, #filter option:hover {
+  background-color: #af7379;
+}
+
+.select {
+  margin-top: 30px;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  width: min(300px, 400px);
+  background-color: white;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  &::after {
+    content: "\25BC";
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    transition: 0.25s all ease;
+    pointer-events: none;
+  }
+  &:hover::after {
+    color: #f0989c;
+    animation: bounce 0.5s infinite;
+  }
+}
+@keyframes bounce {
+  25% {
+    transform: translatey(5px);
+  }
+  75% {
+    transform: translatey(-5px);
+  }
+}
+/* filter */
+
+/* 預覽的日記卡們 */
+.diary-list {
+  display: flex;
+  justify-content: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.diary-item {
+  margin: 12px;
+  padding: 20px;
+  width: 310px;
+  height: 150px;
+  background-color: #e7e7e7;
+  box-shadow: 5px 5px 5px 2px #c8b0b2;
+}
+
+#diary-item-summary {
+  height: 100%;
+}
+
+#date-preview {
+  display: inline-block;
+  font-family: 'Raleway',sans-serif;
+  line-height: 1.25;
+  margin-right: 5px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#tag-preview {
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  background-color: #9fccce;
+  border-radius: 1.5rem;
+  padding: 2px 18px;
+  font-family: "微軟正黑體", "Microsoft JhengHei",  Tahoma , Verdana , Arial , sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  line-height: 26px;
+}
+
+#mood-preview {
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  background-color: #aebca2;
+  border-radius: 1.5rem;
+  padding: 2px 18px;
+  font-family: "微軟正黑體", "Microsoft JhengHei",  Tahoma , Verdana , Arial , sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  line-height: 26px;
+}
+
+#content-preview {
+  margin-top: 20px;
+  height: 50%;
+  font-family: "微軟正黑體", "Microsoft JhengHei",  Tahoma , Verdana , Arial , sans-serif;
+  font-size: 16px;
+  letter-spacing: 1px;
+  line-height: 28px;
+  word-break: break-all;
+  color: #1f1f1f;
+}
+
+.view-details-button {
+  outline: 0;
+  border: none;
+  cursor: pointer;
+  height: 32px;
+  margin-left: 216px;
+  padding: 0px 16px;
+  border-radius: 50px;
+  background-color: #d0d0d0;
+  color: #222;
+  font-size: 12px;
+  font-weight: 1000;
+}
+
+.view-details-button:hover {
+  background-color: #2222221a;
+}
+/* 預覽的日記卡們 */
+
+/* 新增日記卡頁面 */
+.new-diary-entry {
+  height: 100%;
+  padding: 40px;
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.conteiner-new {
+  height: 40px;
+}
+
+#label-date-entry {
+  display: inline-block;
+  font-size: 20px;
+}
+#date-entry {
+  display: inline-block;
+  margin-left: 5px;
+  width: 140px;
+  background-color: inherit;
+  padding: 10px;
+  font-family: "Roboto Mono", monospace;
+  color: black;
+  font-size: 16px;
+  border: none;
+  outline: none;
+}
+
+#label-tag-entry {
+  display: inline-block;
+  font-size: 20px;
+}
+#tag-entry {
+  grid-row-start: 2;
+  width: 100px;
+}
+
+#label-mood-entry{
+  display: inline-block;
+  font-size: 20px;
+}
+#mood-entry {
+  grid-row-start: 3;
+  width: 100px;
+}
+
+textarea#content-entry {
+  display: flex;
+  margin-top: 1rem;
+  height: 70%;
+  width: 90%;
+  resize: none;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  line-height: 5em;
+}
+
+textarea#content-entry:focus {
+  outline: none !important;
+  border: 1px solid rgb(37, 37, 48);
+}
+
+button#save-diary-button {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 15px 35px;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+  background: #403e3d;
+  border-radius: 50px;
+}
+/* 新增日記卡頁面 */
+
+
+/* 瀏覽日記卡頁面 */
+.diary-details, .diary-item-details, #diary-details-summary{
+  height: 100%;
+}
+
+#diary-details-summary {
+  padding: 40px;
+}
+
+#date-details {
+  display: inline-block;
+  font-family: 'Raleway',sans-serif;
+  line-height: 1.25;
+  margin-right: 5px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+#tag-details {
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  background-color: #9fccce;
+  border-radius: 1.5rem;
+  padding: 6px 24px;
+  font-family: "微軟正黑體", "Microsoft JhengHei",  Tahoma , Verdana , Arial , sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+  line-height: 26px;
+}
+
+#mood-details {
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  background-color: #aebca2;
+  border-radius: 1.5rem;
+  padding: 6px 24px;
+  font-family: "微軟正黑體", "Microsoft JhengHei",  Tahoma , Verdana , Arial , sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+  line-height: 26px;
+}
+
+#content-details {
+  margin-top: 50px;
+  height: 75%;
+  font-family: "微軟正黑體", "Microsoft JhengHei",  Tahoma , Verdana , Arial , sans-serif;
+  font-size: 20px;
+  letter-spacing: 1.3px;
+  line-height: 28px;
+  word-break: break-all;
+  color: #1f1f1f;
+}
+
+.edit-button {
+  position: relative;
+  outline: 0;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  padding: 8px 35px;
+  left: 100%;
+  transform: translate(-100%, -50%);
+  background-color: #d0d0d0;
+  color: #222;
+  font-size: 25px;
+  font-weight: 1000;
+}
+
+.edit-button:hover {
+  background-color: #f0989c;
+}
+/* 瀏覽日記卡頁面 */
+
+/* 編輯日記卡頁面 */
+.edit-details, .edit-page, #edit-page-summary{
+  height: 100%;
+}
+
+#edit-page-summary {
+  padding: 20px;
+}
+
+/* .save-edit-button {
+  position: relative;
+  outline: 0;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  padding: 8px 35px;
+  left: 50%;
+  transform: translate(-100%, -50%);
+  background-color: #d0d0d0;
+  color: #222;
+  font-size: 25px;
+  font-weight: 1000;
+}
+.save-edit-button:hover {
+  background-color: #f0989c;
+} */
+/* 編輯日記卡頁面 */
