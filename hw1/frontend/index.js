@@ -9,6 +9,8 @@ const diaryList = document.querySelector(".diary-list");
 const diaryDetails = document.querySelector(".diary-details");
 const editDetails = document.querySelector(".edit-details");
 
+const filter = document.getElementById("filter");
+
 const instance = axios.create({
     baseURL: "http://localhost:8000/api",
 });
@@ -19,35 +21,56 @@ async function main() {
 }
 
 async function renderUpdate() {
+    const filterName = filter.value;
     try {
         const diarys = await getDiarys();
         diaryList.innerHTML = '';
-        diarys.forEach((diary) => renderDiary(diary));
-      } catch (error) {
-          alert("Failed to load diarys!");
-          console.log( error.message );
-      }
+        diarys.forEach((diary) => {
+            if(filterName === diary.tag || filterName === diary.mood || filterName === "全部") {
+                renderDiary(diary);
+            }
+        })
+    } catch(error) {
+        alert("Failed to load Diary or Filtering Failed!");
+        console.log( error.message );
+    }
 }
 
 function setupEventListeners() {
-    const newDiaryButton = document.querySelector("#open-new-diary-entry-popup");
+    const newDiaryButton = document.querySelector(".new-popup-button");
     const newDiaryEntryPopup = document.querySelector("#new-diary-entry-popup");
     const newDiaryClose = document.querySelector("#new-diary-close");
     const dateChoose = document.querySelector("#date-entry");
     const tagChoose = document.querySelector("#tag-entry");
     const moodChoose = document.querySelector("#mood-entry");
     const diaryContentEntry = document.querySelector("#content-entry");
-    const saveDiaryButton = document.querySelector("#save-diary-button");
-    const cancelAddButton = document.querySelector("#cancel-add-button");
+    const saveDiaryButton = document.querySelector(".save-diary-button");
+    const cancelAddButton = document.querySelector(".cancel-add-button");
     const diaryDetailsClose = document.querySelector("#diary-details-close");
     const editDetailsClose = document.querySelector("#edit-details-close");
-    const filter = document.getElementById("filter");
 
     newDiaryButton.addEventListener('click', () => {
         newDiaryEntryPopup.style.display = 'block';
-        document.querySelector("#date-entry").valueAsDate = new Date();
-        tagChoose.value = "標籤";
-        moodChoose.value = "心情";
+        const dateObject = new Date();
+        const year = dateObject.getFullYear().toString();
+        const m = dateObject.getMonth()+1;
+        var month;
+        if (m < 10) {
+            month = `0${m}`;
+        } else {
+            month = m.toString();
+        }
+        var date;
+        const d = dateObject.getDate();
+        if (d < 10) {
+            date = `0${d}`;
+        } else {
+            date = d.toString();
+        }
+        const string = `${year}-${month}-${date}`;
+        dateChoose.value = string;
+        tagChoose.value = "選擇";
+        moodChoose.value = "選擇";
         diaryContentEntry.value = "";
     });
 
@@ -81,11 +104,11 @@ function setupEventListeners() {
             alert("Please choose a date!");
             return;
         }
-        if (tag === "標籤") {
+        if (tag === "選擇") {
             alert("Please choose a tag!");
             return;
         }
-        if (mood === "心情") {
+        if (mood === "選擇") {
             alert("Please choose a mood!");
             return;
         }
@@ -125,17 +148,6 @@ function setupEventListeners() {
     })
 }
 
-// function renderDiarysByFilter(diary) {
-//     const filter = document.getElementById("filter");
-//     filter.addEventListener('change', () => {
-//         const filterName = filter.value;
-//         if ( filterName === "所有" || filterName === diary.tag || filterName === diary.mood) {
-//             renderDiary(diary);
-//             console.log(filterName);
-//         }
-//     });
-// }
-
 function renderDiary(diary) {
     const item = createDiaryElement(diary);
     diaryList.appendChild(item);
@@ -157,8 +169,8 @@ function createDiaryElement(diary) {
     const mood = item.querySelector("#mood-preview");
     mood.innerText = diary.mood;
     const content = item.querySelector("#content-preview");
-    if (diary.content.length > 55) {
-        content.innerText = `${diary.content.substr(0,55)}...`;
+    if (diary.content.length > 40) {
+        content.innerText = `${diary.content.substr(0,40)}...`;
     } else {
         content.innerText = diary.content;
     }
@@ -215,8 +227,8 @@ function renderEditPageElement(diary) {
     const dateEditElement = details.querySelector("#date-edit");
     const year = diary.date.substr(0,4);
     const month = diary.date.substr(5,2);
-    const day = diary.date.substr(8,2);
-    dateEditElement.defaultValue = `${year}-${month}-${day}`;
+    const date = diary.date.substr(8,2);
+    dateEditElement.defaultValue = `${year}-${month}-${date}`;
     const tagEditElement = details.querySelector("#tag-edit");
     tagEditElement.value = diary.tag;
     const moodEditElement = details.querySelector("#mood-edit");
@@ -232,7 +244,6 @@ function renderEditPageElement(diary) {
         const tag = tagEditElement.value;
         const mood = moodEditElement.value;
         const content = contentEditElement.value;
-        console.log(date);
         if (!date) {
             alert("Please choose a date!");
             return;

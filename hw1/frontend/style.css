@@ -5,48 +5,51 @@ body {
 /* body */
 
 /* 標題欄與新增日記卡按鈕 */
+
 #head-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: center;
-  grid-auto-rows: minmax(60px, auto);
+  /* background-color: white; */
+  margin-bottom: 50px;
+  padding-bottom: 20px;
   border-bottom-style: solid;
+  height: 90px;
 }
 
 #head {
-  display: grid;
-  place-content: center;
-  grid-column-start: 2;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50px;
+  left: 50%;
   height: 100px;
 }
 
 #head h1 {
-  text-align: center;
   font-size: 50px;
   color: #222;
 }
 
 #diary-add {
-  display: grid;
-  place-content: center;
-  margin-left: auto;
-  height: 50%;
+  position: absolute;
+  right: 50px;
+  top: 40px;
+  height: 60px;
 }
 
-#open-new-diary-entry-popup {
-  background-color: #af7379;
-  color: white;
-  border: none;
-  border-radius: 2rem;
+.new-popup-button{
+  outline: 0;
+  border: 0;
   cursor: pointer;
-  font-size: 16px;
   font-weight: bold;
-  text-decoration: none;
-  padding: 15px 35px;
-  transition: all 0.3s ease-out;
+  color: black;
+  font-size: 18px;
+  padding: 12px 24px;
+  background-color: white;
+  background-color: #e7e7e7;
+  box-shadow: 0 10px 22px 0 rgb(37 44 97 / 15%), 0 2px 6px 0 rgb(93 100 148 / 20%);
+  transition: all .2s ease-out;
 }
 
-#open-new-diary-entry-popup:hover {
+.new-popup-button:hover {
+  box-shadow: 0 20px 44px 0 rgb(37 44 97 / 15%), 0 9px 12px 0 rgb(93 100 148 / 20%);
   background-color: #f0989c;
 }
 /* 標題欄與新增日記卡按鈕 */
@@ -101,15 +104,23 @@ summary {
 /* 去除多餘物件 */
 
 /* filter */
+#filter-name {
+  position: absolute;
+  right: 148px;
+  top: 117px;
+  font-size: 20px;
+}
+
 #filter {
   appearance: none;
   border: 0;
   outline: 0;
-  background: white;
+  background: #e0cacc;
   box-shadow: none;
   flex: 1;
-  padding: 1em;
   cursor: pointer;
+  font-size: 17px;
+  font-weight: bold;
 }
 #filter::-ms-expand {
   display: none;
@@ -119,12 +130,11 @@ summary {
 }
 
 .select {
-  margin-top: 30px;
-  position: relative;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: absolute;
+  right: 40px;
+  top: 135px;
   display: flex;
-  width: min(300px, 400px);
+  width: min(90px, 400px);
   background-color: white;
   border-radius: 0.25rem;
   overflow: hidden;
@@ -132,7 +142,7 @@ summary {
     content: "\25BC";
     position: absolute;
     right: 1rem;
-    top: 1rem;
+    top: 4px;
     transition: 0.25s all ease;
     pointer-events: none;
   }
@@ -217,6 +227,7 @@ summary {
   letter-spacing: 1px;
   line-height: 28px;
   word-break: break-all;
+  white-space: pre-line;
   color: #1f1f1f;
 }
 
@@ -225,7 +236,7 @@ summary {
   border: none;
   cursor: pointer;
   height: 32px;
-  margin-left: 216px;
+  margin-left: 200px;
   padding: 0px 16px;
   border-radius: 50px;
   background-color: #d0d0d0;
@@ -241,79 +252,137 @@ summary {
 
 /* 新增日記卡頁面 */
 .new-diary-entry {
-  height: 100%;
-  padding: 40px;
-  display: inline-flex;
-  flex-direction: column;
+  height: 85%;
+  padding-top: 40px;
+  padding-right: 40px;
+  padding-left: 40px;
 }
 
-.conteiner-new {
+#new-diary-entry-wrapper {
+  display: inline-flex;
+}
+
+.container-new {
   height: 40px;
 }
 
 #label-date-entry {
   display: inline-block;
+  margin: 0;
   font-size: 20px;
 }
 #date-entry {
   display: inline-block;
   margin-left: 5px;
-  width: 140px;
+  width: 160px;
   background-color: inherit;
   padding: 10px;
   font-family: "Roboto Mono", monospace;
   color: black;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: bold;
   border: none;
   outline: none;
 }
 
 #label-tag-entry {
   display: inline-block;
+  margin: 0;
+  margin-left: 20px;
   font-size: 20px;
 }
 #tag-entry {
-  grid-row-start: 2;
-  width: 100px;
+  display: inline-block;
+  width: 90px;
+  margin-left: 10px;
+  padding: 6px 24px;
+  background-color: #9fccce;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 50px;
+  outline: none;
 }
-
 #label-mood-entry{
   display: inline-block;
+  margin: 0;
+  margin-left: 40px;
   font-size: 20px;
 }
 #mood-entry {
-  grid-row-start: 3;
-  width: 100px;
+  display: inline-block;
+  width: 90px;
+  margin-left: 10px;
+  padding: 6px 24px;
+  background-color: #aebca2;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 50px;
+  outline: none;
 }
 
-textarea#content-entry {
-  display: flex;
-  margin-top: 1rem;
-  height: 70%;
-  width: 90%;
+#content-entry {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 80%;
+  width: 100%;
   resize: none;
-  padding: 0.5rem;
-  font-size: 1rem;
+  /* padding: 40px; */
   border: 1px solid #ccc;
   border-radius: 0.5rem;
-  line-height: 5em;
+  font-size: 1rem;
+  line-height: 30px;
 }
 
-textarea#content-entry:focus {
+#content-entry:focus {
   outline: none !important;
   border: 1px solid rgb(37, 37, 48);
 }
 
-button#save-diary-button {
-  font-size: 16px;
-  font-weight: bold;
-  padding: 15px 35px;
-  color: #fff;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.3s ease-out;
-  background: #403e3d;
+#place-for-buttons-new {
+  position: relative;
+  height: 15%;
+}
+
+.cancel-add-button {
+  position: absolute;
+  right: 150px;
+  outline: 0;
+  border: none;
   border-radius: 50px;
+  cursor: pointer;
+  padding: 8px 30px;
+  background-color: #d0d0d0;
+  color: #222;
+  font-size: 22px;
+  font-weight: 1000;
+}
+
+.cancel-add-button:hover {
+  background-color: #acabab;
+  color: white;
+}
+
+.save-diary-button {
+  position: absolute;
+  right: 20px;
+  outline: 0;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  padding: 8px 30px;
+  background-color: #f0989c;
+  color: #222;
+  font-size: 22px;
+  font-weight: 1000;
+}
+
+.save-diary-button:hover {
+  background-color: #d38990;
+  color: white;
 }
 /* 新增日記卡頁面 */
 
@@ -339,12 +408,13 @@ button#save-diary-button {
 #tag-details {
   display: inline-block;
   outline: 0;
+  margin-left: 30px;
   border: 0;
   background-color: #9fccce;
   border-radius: 1.5rem;
   padding: 6px 24px;
   font-family: "微軟正黑體", "Microsoft JhengHei",  Tahoma , Verdana , Arial , sans-serif;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 700;
   color: white;
   line-height: 26px;
@@ -353,12 +423,13 @@ button#save-diary-button {
 #mood-details {
   display: inline-block;
   outline: 0;
+  margin-left: 10px;
   border: 0;
   background-color: #aebca2;
   border-radius: 1.5rem;
   padding: 6px 24px;
   font-family: "微軟正黑體", "Microsoft JhengHei",  Tahoma , Verdana , Arial , sans-serif;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 700;
   color: white;
   line-height: 26px;
@@ -381,44 +452,157 @@ button#save-diary-button {
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  padding: 8px 35px;
+  padding: 8px 30px;
   left: 100%;
-  transform: translate(-100%, -50%);
+  transform: translate(-80%, -50%);
   background-color: #d0d0d0;
   color: #222;
-  font-size: 25px;
+  font-size: 22px;
   font-weight: 1000;
 }
 
 .edit-button:hover {
   background-color: #f0989c;
+  color: white;
 }
 /* 瀏覽日記卡頁面 */
 
+
 /* 編輯日記卡頁面 */
-.edit-details, .edit-page, #edit-page-summary{
+.edit-details, .edit-page, #edit-page-summary {
   height: 100%;
 }
 
-#edit-page-summary {
-  padding: 20px;
+#more-wrapper {
+  height: 85%;
+  padding-top: 40px;
+  padding-right: 40px;
+  padding-left: 40px;
 }
 
-/* .save-edit-button {
+#edit-page-entry-wrapper {
+  display: inline-flex;
+}
+
+.container-edit {
+  height: 40px;
+}
+
+#label-date-edit {
+  display: inline-block;
+  margin: 0;
+  font-size: 20px;
+}
+#date-edit {
+  display: inline-block;
+  margin-left: 5px;
+  width: 160px;
+  background-color: inherit;
+  padding: 10px;
+  font-family: "Roboto Mono", monospace;
+  color: black;
+  font-size: 18px;
+  border: none;
+  outline: none;
+}
+
+#label-tag-edit {
+  display: inline-block;
+  margin: 0;
+  margin-left: 20px;
+  font-size: 20px;
+}
+#tag-edit {
+  display: inline-block;
+  width: 90px;
+  margin-left: 10px;
+  padding: 6px 24px;
+  background-color: #9fccce;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 50px;
+  outline: none;
+}
+#label-mood-edit{
+  display: inline-block;
+  margin: 0;
+  margin-left: 40px;
+  font-size: 20px;
+}
+#mood-edit {
+  display: inline-block;
+  width: 90px;
+  margin-left: 10px;
+  padding: 6px 24px;
+  background-color: #aebca2;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 50px;
+  outline: none;
+}
+
+#content-edit {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 80%;
+  width: 100%;
+  resize: none;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  line-height: 30px;
+}
+
+#content-edit:focus {
+  outline: none !important;
+  border: 1px solid rgb(37, 37, 48);
+}
+
+#place-for-buttons-edit {
   position: relative;
+  height: 15%;
+}
+
+.cancel-edit-button {
+  position: absolute;
+  right: 150px;
   outline: 0;
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  padding: 8px 35px;
-  left: 50%;
-  transform: translate(-100%, -50%);
+  padding: 8px 30px;
   background-color: #d0d0d0;
   color: #222;
-  font-size: 25px;
+  font-size: 22px;
   font-weight: 1000;
 }
-.save-edit-button:hover {
+
+.cancel-edit-button:hover {
+  background-color: #acabab;
+  color: white;
+}
+
+.save-edit-button {
+  position: absolute;
+  right: 20px;
+  outline: 0;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  padding: 8px 30px;
   background-color: #f0989c;
-} */
+  color: #222;
+  font-size: 22px;
+  font-weight: 1000;
+}
+
+.save-edit-button:hover {
+  background-color: #d38990;
+  color: white;
+}
 /* 編輯日記卡頁面 */

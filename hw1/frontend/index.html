@@ -17,11 +17,11 @@
         <h1>My Diary</h1>
       </div>
       <div class="box" id="diary-add">
-        <button id="open-new-diary-entry-popup">新增日記卡</button>
+        <button class="new-popup-button">新增日記卡</button>
       </div>
-    </div>
 
-      <label class="select">
+      <h3 id="filter-name">Filter :</h3>
+      <div class="select">
         <select id="filter">
           <option value="全部">全部</option>
           <option value="學業">學業</option>
@@ -31,34 +31,37 @@
           <option value="生氣">生氣</option>
           <option value="難過">難過</option>
         </select>
-      </label>
+      </div>
+    </div>
 
 
     <div class="popup" id="new-diary-entry-popup">
       <div class="popup-content">
         <span class="close" id="new-diary-close">&times;</span>
         <div class="new-diary-entry">
-          <div class="container-new">
-            <p id="label-date-entry">Date:</p>
-            <input type="date" id="date-entry" required>
-          </div>
-          <div class="conteiner-new">
-            <p id="label-tag-entry">標籤：</p>
-            <select id="tag-entry" required>
-              <option value="標籤">標籤</option>
-              <option value="學業">學業</option>
-              <option value="人際">人際</option>
-              <option value="社團">社團</option>
-            </select>
-          </div>
-          <div class="conteiner-new">
-            <p id="label-mood-entry">心情：</p>
-            <select id="mood-entry" required>
-              <option value="心情">心情</option>
-              <option value="快樂">快樂</option>
-              <option value="生氣">生氣</option>
-              <option value="難過">難過</option>
-            </select>
+          <div id="new-diary-entry-wrapper">
+            <div class="container-new">
+              <h4 id="label-date-entry">Date:</h4>
+              <input type="date" id="date-entry" required>
+            </div>
+            <div class="container-new">
+              <h4 id="label-tag-entry">Tag:</h4>
+              <select id="tag-entry" required>
+                <option value="選擇">選擇</option>
+                <option value="學業">學業</option>
+                <option value="人際">人際</option>
+                <option value="社團">社團</option>
+              </select>
+            </div>
+            <div id="container-new">
+              <h4 id="label-mood-entry">Mood:</h4>
+              <select id="mood-entry" required>
+                <option value="選擇">選擇</option>
+                <option value="快樂">快樂</option>
+                <option value="生氣">生氣</option>
+                <option value="難過">難過</option>
+              </select>
+            </div>
           </div>
           <textarea
             id="content-entry"
@@ -66,8 +69,10 @@
             tabindex="1"
             reqruired>
           </textarea>
-          <button id="save-diary-button">儲存</button>
-          <button id="cancel-add-button">取消</button>
+        </div>
+        <div id="place-for-buttons-new">
+          <button class="cancel-add-button">取消</button>
+          <button class="save-diary-button">儲存</button>
         </div>
       </div>
     </div>
@@ -104,7 +109,7 @@
           <div id="mood-preview"></div>
         </container>
         <div id="content-preview"></div>
-        <button class="view-details-button">View More</button>
+        <button class="view-details-button">View More -></button>
       </summary>
     </details>
   </template>
@@ -116,7 +121,7 @@
         <div id="tag-details"></div>
         <div id="mood-details"></div>
         <div id="content-details"></div>
-        <button class="edit-button">Edit</button>
+        <button class="edit-button">編輯</button>
       </summary>
     </details>
   </template>
@@ -124,27 +129,39 @@
   <template id="edit-page-template">
     <details id="" class="edit-page">
       <summary id="edit-page-summary">
-        <label for="date-edit">Date:</label>
-          <input type="date" id="date-edit" required>
-          <label for="tag-edit">標籤：</label>
-          <select id="tag-edit" required>
-            <option value="學業">學業</option>
-            <option value="人際">人際</option>
-            <option value="社團">社團</option>
-          </select>
-          <label for="mood-edit">心情：</label>
-          <select id="mood-edit" required>
-            <option value="快樂">快樂</option>
-            <option value="生氣">生氣</option>
-            <option value="難過">難過</option>
-          </select>
+        <div id="more-wrapper">
+          <div id="edit-page-entry-wrapper">
+            <div id="container-edit">
+              <h4 id="label-date-edit">Date:</h4>
+              <input type="date" id="date-edit" required>
+            </div>
+            <div id="container-edit">
+              <h4 id="label-tag-edit">Tag:</h4>
+              <select id="tag-edit" required>
+                <option value="學業">學業</option>
+                <option value="人際">人際</option>
+                <option value="社團">社團</option>
+              </select>
+            </div>
+            <div id="container-edit">
+              <h4 id="label-mood-edit">Mood:</h4>
+              <select id="mood-edit" required>
+                <option value="快樂">快樂</option>
+                <option value="生氣">生氣</option>
+                <option value="難過">難過</option>
+              </select>
+            </div>
+          </div>
           <textarea
-            id="content-edit"
-            tabindex="1"
-            reqruired>
+              id="content-edit"
+              tabindex="1"
+              reqruired>
           </textarea>
-          <button class="save-edit-button">儲存</button>
+        </div>
+        <div id="place-for-buttons-edit">
           <button class="cancel-edit-button">取消</button>
+          <button class="save-edit-button">儲存</button>
+        </div>
       </summary>
     </details>
   </template>
