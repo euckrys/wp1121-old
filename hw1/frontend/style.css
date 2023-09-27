@@ -198,6 +198,7 @@ summary {
   border: 0;
   background-color: #9fccce;
   border-radius: 1.5rem;
+  margin-left: 0px;
   padding: 2px 18px;
   font-family: "微軟正黑體", "Microsoft JhengHei",  Tahoma , Verdana , Arial , sans-serif;
   font-size: 16px;
@@ -235,16 +236,17 @@ summary {
 .view-details-button {
   position: absolute;
   right: 4px;
+  /* bottom: 0px; */
   outline: 0;
   border: none;
   cursor: pointer;
-  height: 32px;
+  height: 40px;
   width: 110px;
   padding: 0px 16px;
   border-radius: 50px;
   background-color: #d0d0d0;
   color: #222;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 1000;
 }
 
@@ -298,9 +300,9 @@ summary {
 }
 #tag-entry {
   display: inline-block;
-  width: 90px;
+  width: 110px;
   margin-left: 20px;
-  padding: 6px 24px;
+  padding: 6px 28px;
   background-color: #9fccce;
   color: white;
   font-size: 18px;
@@ -318,9 +320,9 @@ summary {
 }
 #mood-entry {
   display: inline-block;
-  width: 90px;
+  width: 110px;
   margin-left: 20px;
-  padding: 6px 24px;
+  padding: 6px 28px;
   background-color: #aebca2;
   color: white;
   font-size: 18px;
@@ -341,7 +343,7 @@ summary {
   margin-bottom: 20px;
   padding-left: 20px;
   padding-top: 20px;
-  height: 75%;
+  height: 70%;
   width: 98%;
   resize: none;
   border: 1px solid #ccc;
@@ -538,9 +540,9 @@ summary {
 }
 #tag-edit {
   display: inline-block;
-  width: 90px;
+  width: 110px;
   margin-left: 20px;
-  padding: 6px 24px;
+  padding: 6px 28px;
   background-color: #9fccce;
   color: white;
   font-size: 18px;
@@ -558,9 +560,9 @@ summary {
 }
 #mood-edit {
   display: inline-block;
-  width: 90px;
+  width: 110px;
   margin-left: 20px;
-  padding: 6px 24px;
+  padding: 6px 28px;
   background-color: #aebca2;
   color: white;
   font-size: 18px;
@@ -581,7 +583,7 @@ summary {
   margin-bottom: 20px;
   padding-left: 20px;
   padding-top: 20px;
-  height: 75%;
+  height: 70%;
   width: 98%;
   resize: none;
   border: 1px solid #ccc;

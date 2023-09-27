@@ -1,3 +1,4 @@
+/* global axios */
 const diaryItemTemplate = document.querySelector("#diary-item-template");
 const diaryItemDetailsTemplate = document.querySelector("#diary-item-details-template");
 const editPageTemplate = document.querySelector("#edit-page-template");
