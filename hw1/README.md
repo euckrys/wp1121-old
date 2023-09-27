@@ -77,6 +77,8 @@ open index.html
 
 ## MyDiary 使用說明
 
+**Perfect 要求有註明在下文裡!!!**
+
 ### 首頁
 
 1. 首頁上方中央顯示**MY DIary**標題
