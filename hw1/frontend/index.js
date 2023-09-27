@@ -169,8 +169,8 @@ function createDiaryElement(diary) {
     const mood = item.querySelector("#mood-preview");
     mood.innerText = diary.mood;
     const content = item.querySelector("#content-preview");
-    if (diary.content.length > 40) {
-        content.innerText = `${diary.content.substr(0,40)}...`;
+    if (diary.content.length > 35) {
+        content.innerText = `${diary.content.substr(0,35)}...`;
     } else {
         content.innerText = diary.content;
     }

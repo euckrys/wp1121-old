@@ -63,9 +63,10 @@
               </select>
             </div>
           </div>
+          <h4 id="label-content-entry">Content</h4>
           <textarea
             id="content-entry"
-            placeholder="Write something here"
+            placeholder="Write something here!!!"
             tabindex="1"
             reqruired>
           </textarea>
@@ -117,9 +118,11 @@
   <template id="diary-item-details-template">
     <details id="" class="diary-item-details">
       <summary id="diary-details-summary">
-        <div id="date-details"></div>
-        <div id="tag-details"></div>
-        <div id="mood-details"></div>
+        <div id="details-page-wrapper">
+          <div id="date-details"></div>
+          <div id="tag-details"></div>
+          <div id="mood-details"></div>
+        </div>
         <div id="content-details"></div>
         <button class="edit-button">編輯</button>
       </summary>
@@ -152,8 +155,10 @@
               </select>
             </div>
           </div>
+          <h4 id="label-content-edit">Content</h4>
           <textarea
               id="content-edit"
+              placeholder="Write something here!!!"
               tabindex="1"
               reqruired>
           </textarea>
