@@ -460,8 +460,8 @@ summary {
   height: 75%;
   font-family: "微軟正黑體", "Microsoft JhengHei",  Tahoma , Verdana , Arial , sans-serif;
   font-size: 20px;
-  letter-spacing: 1.3px;
-  line-height: 28px;
+  letter-spacing: 0.6px;
+  line-height: 36px;
   word-break: break-all;
   color: #1f1f1f;
   overflow: scroll;
