@@ -8,7 +8,7 @@
 git clone <repo link>
 ```
 
-### 1. Install dapendencies
+### 2. Install dapendencies
 
 在/frontend 與/backend 中都安裝 yarn
 
@@ -20,7 +20,7 @@ cd backend
 yarn
 ```
 
-### 2. MongoDB setup
+### 3. MongoDB setup
 
 **在/backend 中新增.env 的檔案**, 並加入以下內容
 
@@ -36,7 +36,7 @@ MONGO_URL=<Your MongoDB Connection String>
 MONGO_URL="mongodb+srv://USERNAME:PASSWORD@cluster0.xxxxxxxxxxxx"
 ```
 
-### 3. Run the server
+### 4. Run the server
 
 進到/backend 中並執行以下指令
 
@@ -52,9 +52,23 @@ Connected to MongoDB
 Server running on port http://localhost:8000
 ```
 
-### 4. Open the frontend
+### 5. Open the frontend
 
-以瀏覽器開啟`forntend/index.html`
+在檔案中點擊`forntend/index.html`使其以瀏覽器開啟
+
+Or if you're on ubuntu, you can run the following command to open it in your browser.
+
+```bash
+cd frontend
+xdg-open index.html
+```
+
+If you're on macOS, you can run the following command to open it in your browser.
+
+```bash
+cd frontend
+open index.html
+```
 
 ## MyDiary 使用說明
 
