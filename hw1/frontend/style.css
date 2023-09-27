@@ -179,6 +179,7 @@ summary {
 }
 
 #diary-item-summary {
+  position: relative;
   height: 100%;
 }
 
@@ -232,11 +233,13 @@ summary {
 }
 
 .view-details-button {
+  position: absolute;
+  right: 4px;
   outline: 0;
   border: none;
   cursor: pointer;
   height: 32px;
-  margin-left: 200px;
+  width: 110px;
   padding: 0px 16px;
   border-radius: 50px;
   background-color: #d0d0d0;
