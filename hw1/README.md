@@ -1,6 +1,12 @@
 # Web Programming HW#1
 
-## 安裝與啟動
+## Run the Project
+
+### 1. Clone the project
+
+```bash
+git clone <repo link>
+```
 
 ### 1. Install dapendencies
 
@@ -23,7 +29,7 @@ PORT=8000
 MONGO_URL=<Your MongoDB Connection String>
 ```
 
-請將<Your MongoDB Connection String> 的值換成你自己的 mongoDB 連結
+請將"Your MongoDB Connection String" 的值換成你自己的 mongoDB 連結,
 可能會呈現以下格式:
 
 ```bash
@@ -35,10 +41,11 @@ MONGO_URL="mongodb+srv://USERNAME:PASSWORD@cluster0.xxxxxxxxxxxx"
 進到/backend 中並執行以下指令
 
 ```bash
+#in /backend
 yarn start
 ```
 
-你應該會看到以下訊息, 代表後端成功開始運作並已連接到 MongoDB
+你應該會看到以下訊息, 代表 server 成功開始運作並已連接到 MongoDB
 
 ```bash
 Connected to MongoDB
@@ -61,7 +68,7 @@ Server running on port http://localhost:8000
 
 1. 點擊右上方的「新增日記卡」按鈕, 即可進入編輯模式開始新增日季卡
 2. 上方可以選擇日期、標籤、心情
-3. **(Perfect 要求)**預設日期將會自動讀取系統日期, 可以進行更改, 可以檢查是否為合法的日期。若將日期清除則不予以新增日記卡。系統會自動幫你判斷當天是星期幾並於稍後顯示。
+3. **(Perfect 要求)** 預設日期將會自動讀取系統日期, 可以進行更改, 可以檢查是否為合法的日期。若將日期清除則不予以新增日記卡。系統會自動幫你判斷當天是星期幾並於稍後顯示。
 4. 標籤與心情的預設值為「選擇」, 請下拉選擇 「學業」、「人際」、「社團」與「快樂」、「生氣」、「難過」。若否則不予以新增日記卡
 5. 請在下方欄位輸入你的日記卡內容, 若空白則不予以新增日記卡
 6. 按下取消鍵將取消新增日記卡, 回到首頁
@@ -85,7 +92,7 @@ Server running on port http://localhost:8000
 
 1. 在瀏覽模式中點擊 View More 按鍵, 即可進入該日記卡的編輯模式
 2. 上方可以更改日期、標籤、心情(預設值即為之前日記卡儲存的值)
-3. **(Perfect 要求)**更改日期可以檢查日期是否合法, 若清除日期將無法新增日記卡
+3. **(Perfect 要求)** 更改日期可以檢查日期是否合法, 若清除日期將無法新增日記卡
 4. 下方可以更改日記卡文字內容, 若將文字全部清除將不予以更新日記卡
 5. 按下取消鍵則不儲存, 回到瀏覽模式
 6. 按下儲存鍵則更新日記卡資料, 並同樣回到瀏覽模式, 此時瀏覽模式與首頁的日記卡內容皆已更新完畢
