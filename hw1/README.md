@@ -5,7 +5,7 @@
 ### 1. Clone the project
 
 ```bash
-git clone <repo link>
+git clone <The repo link>
 ```
 
 ### 2. Install dapendencies
