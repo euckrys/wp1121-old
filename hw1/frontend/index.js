@@ -253,7 +253,7 @@ function renderEditPageElement(diary) {
             return;
         }
         try {
-            const diary = await updateDiaryStatus(container.id, { date, tag, mood, content });
+            await updateDiaryStatus(container.id, { date, tag, mood, content });
             renderUpdate();
         } catch (error) {
             alert("Failed to update diary!");
