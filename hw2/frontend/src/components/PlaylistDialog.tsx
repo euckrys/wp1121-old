@@ -236,7 +236,7 @@ export default function PlaylistDialog(props: PlaylistDialogProps) {
               <h4 className='text-xl col-span-5 font-black'>link</h4>
               <hr className='col-span-12 my-2 border-gray-500' />
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col mb-20">
             {songs.map((song) => (
               <Song
                 key={song.id}
