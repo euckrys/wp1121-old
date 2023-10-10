@@ -4,6 +4,14 @@
 
 Follow the instructions in this section to run the app locally.
 
+請確認你有安裝 Node.js(修課同學應該都有裝)，可輸入以下訊息確認。
+
+```bash
+#輸入後會顯示node版本，因人而異
+$ node -v
+v18.17.1
+```
+
 ### 1. Install dapendencies
 
 在/frontend 與/backend 中都安裝 yarn
