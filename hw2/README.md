@@ -4,13 +4,16 @@
 
 Follow the instructions in this section to run the app locally.
 
-請確認你有安裝 Node.js(修課同學應該都有裝)，可輸入以下訊息確認。
+請確認你有安裝`Node.js`(修課同學應該都有裝)，可輸入以下訊息確認。
 
 ```bash
 #輸入後會顯示node版本，因人而異
 $ node -v
 v18.17.1
 ```
+
+建議 node 不要使用太高版本，不然好像會噴錯。
+若照下述步驟開不起 Server，請將 node 版本換成`v18,17.1`試試看，謝謝。
 
 ### 1. Install dapendencies
 
