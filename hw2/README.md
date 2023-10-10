@@ -106,7 +106,7 @@ Visit `http://localhost:5173` to see the app in action. That's it, you're done!
 
 ## APP 使用說明
 
-### PERFECT 要求
+### **_PERFECT 要求_**
 
 1. 使用者提示: 當使用者未輸入資訊或是進行錯誤操作時，給予適當提示。例如使用者新增或編輯清單時，未輸入標題，以彈窗提示「請輸入標題」。
 
