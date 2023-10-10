@@ -4,16 +4,30 @@
 
 Follow the instructions in this section to run the app locally.
 
+### 0. node.js setup
+
 請確認你有安裝`Node.js`(修課同學應該都有裝)，可輸入以下訊息確認。
 
 ```bash
-#輸入後會顯示node版本，因人而異
-$ node -v
-v18.17.1
+node -v
+#輸入後會在此顯示node版本，因人而異
 ```
 
 建議 node 不要使用太高版本，不然好像會噴錯。
-若照下述步驟開不起 Server，請將 node 版本換成`v18,17.1`試試看，謝謝。
+
+若照下述之步驟開不起 Server，請將 node 版本換成`v18,17.1`試試看，謝謝。
+
+如果你是使用`fnm`作為 version manager，可以輸入以下指令以切換 node 版本
+
+```bash
+fnm use v18.17.1
+```
+
+若使用的是`nvm`，請輸入以下指令
+
+```bash
+nvm use v18.17.1
+```
 
 ### 1. Install dapendencies
 
