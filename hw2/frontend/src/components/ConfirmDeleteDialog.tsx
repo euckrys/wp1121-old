@@ -16,8 +16,6 @@ type ConfirmDeleteDialogProps = {
     allcheckedSongs: string[];
 }
 
-
-
 export default function ComfirmDeleteDialog({confirmDeleteDialogOpen, confirmDeleteDialogOnClose, songs, allcheckedSongs} : ConfirmDeleteDialogProps) {
     const { fetchSongs } = useSongs();
 

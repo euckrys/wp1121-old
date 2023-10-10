@@ -21,7 +21,6 @@ const MenuProps = {
   },
 };
 
-
 type PlaylistSelectorProps = {
   selectedIds: string[];
   onSelectChange: (selectedIds: string[]) => void;

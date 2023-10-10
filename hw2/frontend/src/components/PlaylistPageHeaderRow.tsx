@@ -9,7 +9,6 @@ type PlaylistPageHeaderRowProps = {
   playlistDialogOnClose: () => void;
 }
 
-
 export default function PlaylistPageHeaderRow( { playlistDialogOnClose }: PlaylistPageHeaderRowProps) {
   return (
     <Box sx={{ flexGrow: 1, height: "80px"}} >

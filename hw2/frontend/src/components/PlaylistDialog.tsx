@@ -7,15 +7,15 @@ import ClickAwayListener from "@mui/material/ClickAwayListener";
 import Input from "@mui/material/Input";
 import Typography from '@mui/material/Typography';
 import Checkbox from '@mui/material/Checkbox';
+import { TextField } from "@mui/material";
 
+import ConfirmDeleteDialog from "./ConfirmDeleteDialog";
 import PlaylistPageHeaderRow from "./PlaylistPageHeaderRow"
 import NewSongDialog from "./NewSongDialog";
+import Song from "./Song";
 import type { SongProps } from "./Song";
 import useSongs from "@/hooks/useSongs";
 import { updatePlaylist } from "@/utils/client";
-import Song from "./Song";
-import ConfirmDeleteDialog from "./ConfirmDeleteDialog";
-import { TextField } from "@mui/material";
 
 type PlaylistDialogProps = {
   playlistDialogOpen: boolean;
@@ -80,8 +80,6 @@ export default function PlaylistDialog(props: PlaylistDialogProps) {
     }
     setEdittingDescription(false);
   }
-
-
 
   const handleDeleteConfirming = async () => {
     if (allcheckedSongs.length === 0){

@@ -5,7 +5,6 @@ import Button from '@mui/material/Button';
 import HomepageHeaderRow from "@/components/HomepageHeaderRow";
 import Playlist from './components/Playlist';
 import NewPlaylistDialog from './components/NewPlaylistDialog';
-
 import useSongs from './hooks/useSongs';
 
 function App() {

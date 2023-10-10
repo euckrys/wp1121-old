@@ -4,10 +4,10 @@ import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import IconButton from "@mui/material/IconButton";
 import Box from "@mui/material/Box";
 
+import PlaylistDialog from "./PlaylistDialog";
 import type { SongProps } from "./Song";
 import { deletePlaylist } from "@/utils/client";
 import useSongs from "@/hooks/useSongs";
-import PlaylistDialog from "./PlaylistDialog";
 
 export type PlaylistProps = {
     id: string;
@@ -16,7 +16,6 @@ export type PlaylistProps = {
     songs: SongProps[];
     isButtonActive: boolean;
 };
-
 
 export default function Playlist({ id, title, description, songs, isButtonActive }: PlaylistProps) {
     const [playlistDialogOpen, setPlaylistDialogOpen] = useState(false);
