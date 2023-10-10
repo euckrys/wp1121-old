@@ -1,4 +1,5 @@
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
+import type { ChangeEvent } from 'react';
 
 import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
@@ -36,7 +37,7 @@ export default function Song(
           />
           <h4 className='text-xl text-gray-200 col-span-3 overflow-hidden truncate'>{title}</h4>
           <h4 className='text-xl text-gray-200 col-span-2 overflow-hidden truncate'>{singer}</h4>
-          <h4 className='text-xl text-gray-200 col-span-5 overflow-hidden'><a href={link} target='_blank' className='truncate'>{link}</a></h4>
+          <h4 className='text-xl text-gray-200 col-span-5 overflow-hidden'><a href={link} target='_blank' rel="noreferrer" className='truncate'>{link}</a></h4>
           <IconButton
             onClick={() => setEditSongDialogOpen(true)}
             className='content-center col-span-1'

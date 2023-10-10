@@ -21,13 +21,10 @@ export default function ComfirmDeleteDialog({confirmDeleteDialogOpen, confirmDel
 
     const handleDeleteSongs = async () => {
         allcheckedSongs.forEach( async (id) => {
-            console.log(id);
             try {
                 await deleteSong(id);
                 fetchSongs();
-            } catch (error) {
-
-            } finally {
+            }finally {
                 confirmDeleteDialogOnClose();
             }
         })
@@ -53,7 +50,6 @@ export default function ComfirmDeleteDialog({confirmDeleteDialogOpen, confirmDel
                 {allcheckedSongs.map((id) => {
                   const song = songs.find((s) => s.id === id);
                   if (song?.title !== undefined) {
-                    console.log(song?.title);
                     return (
                     <li key={id} className="mb-4">
                       {song && (

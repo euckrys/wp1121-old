@@ -26,7 +26,7 @@ type PlaylistDialogProps = {
   id: string;
 };
 
-let allcheckedSongs: string[] = [];
+const allcheckedSongs: string[] = [];
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
@@ -108,7 +108,6 @@ export default function PlaylistDialog(props: PlaylistDialogProps) {
 
       return newCheckedSongs;
     })
-    console.log(allcheckedSongs);
   }
 
   return (

@@ -5,7 +5,8 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
+import type { SelectChangeEvent } from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
 
 import useSongs from '@/hooks/useSongs';
@@ -75,7 +76,7 @@ export default function PlaylistSelector({ onSelectChange, playlistId }: Playlis
                   {playlist.title}
                 </MenuItem>
               )
-            };
+            }
           })}
         </Select>
       </FormControl>

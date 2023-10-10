@@ -46,7 +46,6 @@ export default function NewPlaylistDialog({ newPlaylistDialogOpen, newPlaylistDi
       fetchPlaylists();
     } catch (error) {
       alert("Error: Failed to create list");
-      console.log( (error as Error).message );
     } finally {
       newPlaylistDialogOnClose();
     }

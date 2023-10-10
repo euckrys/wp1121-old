@@ -69,7 +69,6 @@ export default function EditSongDialog(props: EditSongDialogProps) {
             fetchSongs();
         } catch (error) {
             alert("Error: Failed to update song");
-            console.log( (error as Error).message );
         } finally {
             editSongDialogOnClose();
         }

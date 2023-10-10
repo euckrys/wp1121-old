@@ -56,7 +56,6 @@ export default function NewSongDialog({ newSongDialogOpen, newSongDialogOnClose,
         fetchSongs();
       } catch (error) {
         alert("Error: Failed to add song");
-        console.log( (error as Error).message );
       } finally {
         newSongDialogOnClose();
       }
@@ -116,4 +115,4 @@ export default function NewSongDialog({ newSongDialogOpen, newSongDialogOnClose,
             </DialogActions>
         </Dialog>
     );
-};
+}
