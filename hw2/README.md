@@ -6,7 +6,7 @@ Follow the instructions in this section to run the app locally.
 
 ### 0. node.js setup
 
-請確認你有安裝`Node.js`(修課同學應該都有裝)，可輸入以下訊息確認。
+請確認你有安裝`Node.js`(修課同學應該都有裝)，若沒有裝請參考老師公佈的`HW0`，可輸入以下訊息確認。
 
 ```bash
 node -v
