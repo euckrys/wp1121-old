@@ -106,6 +106,12 @@ Visit `http://localhost:5173` to see the app in action. That's it, you're done!
 
 若無跳出警告或錯誤訊息即代表網頁已成功開始運作!!
 
+### 6. clear your mongodb
+
+請清空你的 MongoDB，以避免 Schema 與你資料庫的現有內容不相符，造成 APP 無法正常運作。
+
+此外，若和後端 Server 的溝通有問題，請再三確認 backend/.env 中的設定或拼寫無誤(例如 URL 後多了不必要的 semicolon)。
+
 ## APP 使用說明
 
 ### **_PERFECT 要求_**
