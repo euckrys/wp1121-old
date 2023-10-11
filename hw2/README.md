@@ -13,7 +13,7 @@ node -v
 #輸入後會在此顯示node版本，因人而異
 ```
 
-建議 node 不要使用太高版本，不然好像會噴錯。
+建議 node 不要使用太新的版本，不然好像會噴錯。
 
 若照下述之步驟開不起 Server，請將 node 版本換成`v18,17.1`試試看，謝謝。
 
@@ -55,6 +55,7 @@ cp .env.example .env
 Then, fill in the `MONGO_URL` field in `.env` with your MongoDB connection string and fill in the `PORT` field with the port you want to use. After that, you're `.env` file should look like this.
 
 ```bash
+#in /backend/.env
 PORT=8000
 MONGO_URL="mongodb+srv://<username>:<password>@<cluster>.example.mongodb.net/?retryWrites=true&w=majority"
 ```
@@ -72,6 +73,7 @@ cp .env.example .env
 Then, fill in the `VITE_API_URL` field in `.env` with the url of your backend server. After that, you're `.env` file should look like this. Note that the `port` should be the same as the one you set in the backend `.env` file.
 
 ```bash
+#in /frontend/.env
 VITE_API_URL="http://localhost:8000/api"
 ```
 
