@@ -82,7 +82,7 @@ const AuthLayout = () => {
                 className="last-of-type:border-r-0"
                 data-testid={`tab-${tab.path}`}
               >
-                <NavLink to={`/${tab.title}`}>
+                <NavLink to={`/${tab.title.toLowerCase()}`}>
                   {tab.title}
                 </NavLink>
               </TabsTrigger>
@@ -97,7 +97,7 @@ const AuthLayout = () => {
             {/* The logo should be vscoddit.svg in the public folder. */}
             {/* The logo should have alt text "VSCoddit Logo". */}
             {/* The title should be "VSCoddit" */}
-            <img data-testid="header-logo" className="h-5 w-5 brightness-200" src='vscoddit.svg' alt='VSCoddit Logo'/>
+            <img data-testid="header-logo" className="h-5 w-5 brightness-200" src='/vscoddit.svg' alt='VSCoddit Logo'/>
             <span data-testid="header-title">VSCoddit</span>
             {/* END of TODO 1.1 */}
           </CardTitle>
@@ -112,6 +112,7 @@ const AuthLayout = () => {
             <div className="flex flex-col gap-2">
               <Label htmlFor="username">Username</Label>
               {/* TODO 1.4: Login Fails for Unregistered Users (8%) */}
+              {}
               {/* You can think of `Input` as the `input` tag. */}
               {/* It should be controlled by the `username` state. */}
               {/* It should have placeholder text "Enter Username". */}
