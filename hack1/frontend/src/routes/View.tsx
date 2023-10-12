@@ -44,14 +44,16 @@ const View = (): React.ReactNode => {
     /* Hint 1: Finish `handleKeyPress` function */
     const handleKeyPress = (e: { code: string }) => {
       if (e.code === 'ArrowRight') {
-        // Next Page
+        // Next Page\
+        handleNextClick();
       } else if (e.code === 'ArrowLeft') {
         // Previous Page
+        handlePrevClick();
       }
     };
     /* Hint 2: Add `handleKeyPress` function as event listener to keyboard input event */
-    window.addEventListener('', () => {});
-    return () => window.removeEventListener('', () => {});
+    window.addEventListener('keydown', (event) => {handleKeyPress(event)});
+    return () => window.removeEventListener('keyup', (event) => {handleKeyPress(event)});
     /* Hint 3: Update the dependency array of `useEffect` hook */
   }, []);
   /* End TODO 2.3 */
