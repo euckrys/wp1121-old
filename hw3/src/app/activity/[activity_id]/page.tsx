@@ -115,7 +115,7 @@ export default async function ActivityPage({
     return (
       <div className="max-h-screen flex justify-center p-10 m-10">
         <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-3xl max-h-min flex-col">
-          <div className="flex items-center mb-5">
+          <div className="flex items-center mb-5 mt-5">
             <Link href={{ pathname: "/", query: { username, handle } }}>
               <ChevronLeft size={40} />
             </Link>
