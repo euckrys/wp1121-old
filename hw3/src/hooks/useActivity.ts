@@ -6,25 +6,6 @@ export default function useActivity() {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
 
-    const getActivity = async () => {
-        if (loading) return;
-        setLoading(true);
-
-        const res = await fetch("/api/activities", {
-            method: "GET",
-        });
-
-        if (!res.ok) {
-            const body = await res.json();
-            throw new Error(body.error);
-        }
-
-        router.refresh();
-        setLoading(false);
-
-        return res;
-    }
-
     const postActivity = async ({
         handle,
         content,
@@ -58,10 +39,12 @@ export default function useActivity() {
 
         router.refresh();
         setLoading(false);
+
+        const responseJson = await res.json();
+        return responseJson.id;
     };
 
     return {
-        getActivity,
         postActivity,
         loading,
     };

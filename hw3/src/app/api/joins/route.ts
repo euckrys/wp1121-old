@@ -14,38 +14,6 @@ const joinActivityRequestSchema = z.object({
 
 type JoinActivityRequest = z.infer<typeof joinActivityRequestSchema>;
 
-export async function GET(request: NextRequest) {
-    const data = await request.json();
-
-    try {
-        joinActivityRequestSchema.parse(data);
-    } catch (error) {
-        return NextResponse.json({ error: "Invalid request" }, { status: 400 });
-    }
-
-    const { activityId, userHandle } = data as JoinActivityRequest;
-
-    try {
-        const [exist] = await db
-          .select({ dummy: sql`1` })
-          .from(joinsTable)
-          .where(
-            and(
-                eq(joinsTable.activityId, activityId),
-                eq(joinsTable.userHandle, userHandle),
-            ),
-          )
-          .execute();
-
-        return NextResponse.json({ joined: Boolean(exist) }, { status: 200 });
-    } catch (error) {
-        return NextResponse.json(
-            { error: "Something went wrong" },
-            { status: 500 },
-        );
-    }
-}
-
 export async function POST(request: NextRequest) {
     const data = await request.json();
 

@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef, useState } from "react";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
@@ -17,15 +17,17 @@ import {
 } from "@/components/ui/dialog";
 import useUserInfo from "@/hooks/useUserInfo";
 import useActivity from "@/hooks/useActivity";
+import useJoin from "@/hooks/useJoin";
 
 export default function AddActivityDialogs() {
     const [showDialog, setShowDialog] = useState(false);
-    // const router = useRouter();
-    const { handle } = useUserInfo();
+    const router = useRouter();
+    const { username, handle } = useUserInfo();
     const contentInputRef = useRef<HTMLInputElement>(null);
     const startTimeInputRef = useRef<HTMLInputElement>(null);
     const endTimeInputRef = useRef<HTMLInputElement>(null);
-    const { getActivity, postActivity, loading } = useActivity();
+    const { postActivity, loading } = useActivity();
+    const { joinActivity } = useJoin();
 
     const isCorrectDate = (date: Date | string): boolean => {
         return isFinite(+(date instanceof Date ? date : new Date(date)));
@@ -61,6 +63,11 @@ export default function AddActivityDialogs() {
         const etDate = new Date(et1[0]);
 
         const timeDiff = etDate.getTime() - stDate.getTime();
+
+        if (!st1[1] || !st2[1] || !st2[0] || !st2[1] || !st2[2] || !et2[0] || !et2[1] || !et2[2]) {
+            alert("請確認格式是否正確 : \"YYYY-MM-DD HH\"")
+            return;
+        }
 
         // 合法日期與時間
         if (!isCorrectDate(startTime.split(" ", 2)[0]) || !isCorrectDate(endTime.split(" ", 2)[0])) {
@@ -102,7 +109,7 @@ export default function AddActivityDialogs() {
         }
 
         try {
-            await postActivity({
+            const newActivityId = await postActivity({
                 handle,
                 content,
                 startTime,
@@ -113,10 +120,12 @@ export default function AddActivityDialogs() {
             startTimeInputRef.current.value = "";
             endTimeInputRef.current.value = "";
 
-            const res = await getActivity();
+            await joinActivity({
+                activityId: newActivityId,
+                userHandle: handle,
+            });
 
-            console.log(res);
-            // router.push(`${pathname}?${params.toString()}`);
+            router.push(`/activity/${newActivityId}?username=${username}&handle=${handle}`);
         } catch (e) {
             console.error(e);
             alert("Error posting activitiy");
@@ -138,13 +147,13 @@ export default function AddActivityDialogs() {
                 onClick={ () => setShowDialog(true) }
                 className="min-w-max font-semibold text-base tracking-wider"
             >
-                新增
+                新增活動
             </Button>
             <Dialog open={showDialog} onOpenChange={handleOpenChange}>
                 <DialogContent className="sm:max-w-[600px]">
                     <DialogHeader>
                         <DialogTitle className="tracking-wide">
-                            來創建活動吧！
+                            來建立活動吧！
                         </DialogTitle>
                         <DialogDescription className="tracking-wide">
                             請輸入活動標題、時間。

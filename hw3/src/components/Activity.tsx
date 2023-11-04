@@ -41,7 +41,7 @@ export default function Activity({
                     <article className="whitespace-pre-wrap flex-grow ml-2 text-base font-semibold font-sans tracking-wide">
                         {content}
                     </article>
-                    {joined && <Check className="text-green-800 text-lg"/>}
+                    {joined && <Check className="text-green-700 text-lg font-black"/>}
                     <p className="ml-8">{joins ? `${joins} 人參加`: "0 人參加" }</p>
                 </div>
             </div>

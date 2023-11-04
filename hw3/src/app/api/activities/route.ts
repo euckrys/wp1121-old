@@ -16,36 +16,6 @@ const postActivityRequestSchema = z.object({
 
 type PostActivityRequest = z.infer<typeof postActivityRequestSchema>;
 
-export async function GET() {
-    // const data = await request.json();
-
-    // try {
-    //     postActivityRequestSchema.parse(data);
-    // } catch (error) {
-    //     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
-    // }
-
-    // const { content } = data as PostActivityRequest;
-
-    try {
-        const [results] = await db
-        .select({
-            id: activitiesTable.id,
-            content: activitiesTable.content
-        })
-        .from(activitiesTable)
-        .execute();
-
-        return NextResponse.json({ id: results.id, content: results.content }, { status: 200 });
-    } catch (error) {
-        return NextResponse.json(
-            { error: "Something went wrong" },
-            { status: 500 },
-        );
-    }
-}
-
-
 export async function POST(request: NextRequest) {
     const data = await request.json();
 
@@ -58,7 +28,7 @@ export async function POST(request: NextRequest) {
     const { handle, content, startTime, endTime, replyToActivityId } = data as PostActivityRequest;
 
     try {
-        await db
+        const result = await db
           .insert(activitiesTable)
           .values({
             userHandle: handle,
@@ -67,13 +37,18 @@ export async function POST(request: NextRequest) {
             endTime,
             replyToActivityId,
           })
+          .returning()
           .execute();
+
+          console.log(result);
+
+          const newActivityId = result;
+
+          return NextResponse.json({ id: newActivityId[0].id }, { status: 201 });
     } catch (error) {
         return NextResponse.json(
             { error: "Something went wrong" },
             { status: 500 },
         );
     }
-
-    return new NextResponse("OK", { status: 200 });
 }

@@ -7,7 +7,6 @@ import { Search } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
-
 export default function SearchInput() {
     const router = useRouter();
     const pathname = usePathname();
@@ -30,8 +29,8 @@ export default function SearchInput() {
                 <Search className="mt-2 ml-4"/>
                 <input
                     onChange={handleSearch}
-                    placeholder="搜尋想參加的活動"
-                    className={cn("ml-4 rounded-xl p-2 w-full")}
+                    placeholder=" 搜尋想參加的活動 . . . "
+                    className={cn("ml-4 rounded-xl p-2 w-full placeholder:text-gray-700 placeholder:font-semibold")}
                     style={{ border: "1px solid gray" }}
                 />
             </div>

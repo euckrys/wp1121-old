@@ -113,9 +113,9 @@ export default async function ActivityPage({
       .execute();
 
     return (
-      <div className="min-h-screen flex justify-center p-20">
-        <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-4xl h-1/2 flex-col">
-          <div className="flex items-center mb-20">
+      <div className="max-h-screen flex justify-center p-10 m-10">
+        <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-3xl max-h-min flex-col">
+          <div className="flex items-center mb-5">
             <Link href={{ pathname: "/", query: { username, handle } }}>
               <ChevronLeft size={40} />
             </Link>
@@ -142,11 +142,13 @@ export default async function ActivityPage({
               </div>
             </div>
           </div>
+          <div className="font-semibold text-xl ml-1 text-mono">討論區</div>
+          <Separator className="mt-2 mb-4"/>
           <ReplyInput
             joined={Boolean(joined)}
             replyToActivityId={activity.id}
           />
-          <div className="flex-col mt-10 ml-2">
+          <div className="flex-col mt-5 ml-2 overflow-y-auto" style={{ maxHeight: "550px"}}>
             {replies.map((reply) => (
               <div key={reply.id}>
                 <Reply

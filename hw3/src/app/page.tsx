@@ -8,6 +8,7 @@ import SearchInput from "@/components/SearchInput";
 import AddActivityDialog from "@/components/AddActivityDialog"
 import ChangeDialog from "@/components/ChangeDialog";
 import NameDialog from "@/components/NameDialog";
+import { Separator } from "@/components/ui/separator";
 
 type HomePageProps = {
   searchParams: {
@@ -84,7 +85,7 @@ export default async function Home({
 
   return (
     <div className="max-h-screen flex justify-center p-10 m-10">
-      <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-3xl max-h-min flex-col">
+      <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-3xl max-h-min flex-col">
         <div className="max-h-full">
           <div className="flex items-center justify-between">
             <h1 className="font-bold text-2xl ml-3">{`${username}`}</h1>
@@ -94,10 +95,12 @@ export default async function Home({
             <div className="w-full">
               <SearchInput />
             </div>
+            <p className="font-semibold ml-5">或</p>
             <div className="ml-5 mr-5">
               <AddActivityDialog />
             </div>
           </div>
+          <Separator className="mt-8"/>
           <div className="mt-5 overflow-y-auto" style={{ height: "550px" }}>
             {activities.map((activity) => (
               <Activity
