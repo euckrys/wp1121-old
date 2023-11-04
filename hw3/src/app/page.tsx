@@ -101,7 +101,7 @@ export default async function Home({
             </div>
           </div>
           <Separator className="mt-8"/>
-          <div className="mt-5 overflow-y-auto" style={{ height: "550px" }}>
+          <div className="mt-5 overflow-y-auto" style={{ maxHeight: "550px" }}>
             {activities.map((activity) => (
               <Activity
                 key={activity.id}
