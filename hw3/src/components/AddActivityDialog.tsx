@@ -82,10 +82,10 @@ export default function AddActivityDialogs() {
         } else if (st1[1].length!=2 || et1[1].length!=2) {
             alert("小時應為2位整數(24小時制)");
             return;
-        } else if (Number(st1[1])<0 || Number(st1[1])>24) {
+        } else if (Number(st1[1])<0 || Number(st1[1])>=24) {
             alert("Invalid hour value of the start time");
             return;
-        } else if (Number(et1[1])<0 || Number(et1[1])>24) {
+        } else if (Number(et1[1])<0 || Number(et1[1])>=24) {
             alert("Invalid hour value of the end time");
             return;
         };

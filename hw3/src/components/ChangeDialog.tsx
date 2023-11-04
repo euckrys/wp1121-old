@@ -65,7 +65,7 @@ export default function ChangeDialog() {
             onClick={() => setShowDialog(true)}
             className="bg-white text-black font-bold mt-1 tracking-wider hover:bg-gray-200"
           >
-           <p className="text-sm text-gray-800 mt-1 border-b-2 border-gray-800">切換使用者</p>
+           <p className="text-sm text-gray-800 mt-1 border-b-2 border-gray-800">切換使用者名稱</p>
           </Button>
           <Dialog open={showDialog} onOpenChange={handleOpenChange}>
             <DialogContent>
