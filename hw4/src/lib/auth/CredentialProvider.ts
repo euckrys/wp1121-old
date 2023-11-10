@@ -27,6 +27,7 @@ export default CredentialsProvider({
             console.log("Wrong credentials. Try again.");
             return null;
         }
+
         const { email, username, password } = validatedCredentials;
 
         const [existedUser] = await db
@@ -67,10 +68,11 @@ export default CredentialsProvider({
             console.log(`The email has registered with ${existedUser.provider}.`);
             return null;
         }
+
         if (!existedUser.hashedPassword) {
             console.log("The email has registered with social account.");
             return null;
-          }
+        }
 
         const isValid = await bcrypt.compare(password, existedUser.hashedPassword);
         if (!isValid) {
@@ -85,4 +87,3 @@ export default CredentialsProvider({
         }
     },
 });
-
