@@ -24,7 +24,7 @@ export default function AuthForm() {
             email,
             username,
             password,
-            callbackUrl: `${publicEnv.NEXT_PUBLIC_BASE_URL}/docs`,
+            callbackUrl: `${publicEnv.NEXT_PUBLIC_BASE_URL}/chats`,
         });
     };
 
@@ -76,7 +76,7 @@ export default function AuthForm() {
                             </span>
                         ) : (
                             <span>
-                                Do not have an account?
+                                Do not have an account?{" "}
                                 <a
                                     className="cursor-pointer hover:underline"
                                     onClick={() => setIsSignUp(true)}
@@ -86,7 +86,7 @@ export default function AuthForm() {
                             </span>
                         )}
                     </div>
-                    <Button>
+                    <Button type="submit" className="w-full">
                         Sign {isSignUp? "Up" : "In"}
                     </Button>
                 </form>
@@ -98,7 +98,7 @@ export default function AuthForm() {
                 <Button
                     onClick={async () => {
                         signIn("github", {
-                            callbackUrl: `${publicEnv.NEXT_PUBLIC_BASE_URL}/docs`,
+                            callbackUrl: `${publicEnv.NEXT_PUBLIC_BASE_URL}/chats`,
                         });
                     }}
                     className="flex w-full"

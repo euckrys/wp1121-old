@@ -1,4 +1,13 @@
-export default function ChatsPage() {
+
+type pageProps = {
+    searchParams: {
+        search?: string;
+    }
+}
+
+export default function ChatsPage({
+    searchParams: { search },
+}: pageProps) {
     return (
         <div>
             <h1>Chats</h1>
