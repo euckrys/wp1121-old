@@ -1,10 +1,10 @@
 "use client";
 
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 import { useRef } from "react";
 import useMessage from "@/hooks/useMessage";
+import useChat from "@/hooks/useChat";
 
 import { useSession } from "next-auth/react";
 
@@ -16,7 +16,8 @@ export default function MessageInput({
     chatId,
 }: MessageInputProps) {
     const textareaRef = useRef<HTMLTextAreaElement>(null);
-    const { postMessage, loading } = useMessage();
+    const { postMessage, loading: loading1 } = useMessage();
+    const { updateChat, loading: loading2} = useChat();
     const { data: session } = useSession();
 
     const username = session?.user?.username? session.user.username : "";
@@ -36,12 +37,17 @@ export default function MessageInput({
             });
             textareaRef.current.value = "";
 
-            // textareaRef.current.dispatchEvent(
-            //     new Event("input", { bubbles: true, composed: true }),
-            // );
+            await updateChat({
+                chatId,
+                username1: username,
+                username2: username,
+                lastContent: content,
+            })
+
+
         } catch (error) {
             console.log(error);
-            alert("Error sending message");
+            alert("Error sending message or updating chat");
         }
     }
 
@@ -53,7 +59,7 @@ export default function MessageInput({
     }
 
     return (
-        <div onClick={() => textareaRef.current?.focus()}>
+        <div onClick={() => textareaRef.current?.focus()} className="mb-5">
             <div className="flex flex-row justify-between">
                 <div className="w-full">
                     <textarea
@@ -67,10 +73,10 @@ export default function MessageInput({
                 <div className="ml-3 self-center">
                     <Button
                         onClick={handleSend}
-                        disabled={loading}
-                        className="font-bold text-base"
+                        disabled={loading1 || loading2}
+                        className="font-bold text-base p-5"
                     >
-                        Reply
+                        <p className="text-xl">Reply</p>
                     </Button>
                 </div>
             </div>

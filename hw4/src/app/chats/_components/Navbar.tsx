@@ -3,17 +3,18 @@ import { RxAvatar } from "react-icons/rx";
 
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { headers } from "next/headers";
 
 import { Button } from "@/components/ui/button";
 import { auth } from "@/lib/auth";
 import { publicEnv } from "@/lib/env/public";
 
-import SearchInput from "./SearchInput";
 import Search from "./Search";
 import { db } from "@/db";
 import { chatsTable } from "@/db/schema";
-import { and, eq, like, or } from "drizzle-orm";
+import { and, eq, desc, or, like } from "drizzle-orm";
 import Chat from "./Chat";
+import SearchInput2 from "./SearchInput2";
 
 export default async function Navbar() {
   const session = await auth();
@@ -29,6 +30,7 @@ export default async function Navbar() {
       chatId: chatsTable.displayId,
       username1: chatsTable.username1,
       username2: chatsTable.username2,
+      lastContent: chatsTable.lastContent,
     })
     .from(chatsTable)
     .where(
@@ -37,17 +39,19 @@ export default async function Navbar() {
           eq(chatsTable.username1, username1),
           eq(chatsTable.username2, username1),
         ),
+        // like(chatsTable.username1, ),
       )
     )
+    .orderBy(desc(chatsTable.lastUpdate))
     .execute();
 
   return (
-    <nav className="flex w-full flex-col overflow-y-scroll bg-slate-100 pb-10">
-      <nav className="sticky top-0 flex flex-col items-center justify-between border-b bg-slate-100 pb-2">
-        <div className="flex w-full items-center justify-between px-3 py-1">
-          <div className="flex items-center gap-2">
+    <nav className="flex w-full flex-col overflow-y-scroll pb-10">
+      <nav className="sticky top-0 flex flex-col items-center justify-between border-b pb-2">
+        <div className="flex w-full items-center justify-between px-3 py-1 mt-5">
+          <div className="flex items-center gap-2 text-2xl">
             <RxAvatar />
-            <h1 className="text-sm font-semibold">
+            <h1 className="text-2xl font-semibold">
               {session?.user?.username ?? "User"}
             </h1>
           </div>
@@ -57,24 +61,25 @@ export default async function Navbar() {
               type={"submit"}
               className="hover:bg-slate-200"
             >
-              Sign Out
+              <p className="text-lg">Sign Out</p>
             </Button>
           </Link>
         </div>
-        <SearchInput
-          userId1={userId1}
-          username1={username1}
-        />
-        <Search />
-        <div>
-          {chats.map((chat) => (
-            <Chat
-              key={chat.id}
-              chatId={chat.chatId}
-              username={chat.username1 === username1? chat.username2 : chat.username1}
-            />
-          ))}
+        <div className="w-full p-3">
+          <SearchInput2 />
         </div>
+        {chats && (
+          <div className="w-full p-3">
+            {chats.map((chat) => (
+              <Chat
+                key={chat.id}
+                chatId={chat.chatId}
+                username={chat.username1 === username1? chat.username2 : chat.username1}
+                lastContent={chat.lastContent? chat.lastContent: "開始你們的第一則對話吧！"}
+              />
+            ))}
+          </div>
+        )}
       </nav>
     </nav>
   );

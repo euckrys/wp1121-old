@@ -1,20 +1,85 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-import Pusher from "pusher";
-import { privateEnv } from "@/lib/env/private";
-import { publicEnv } from "@/lib/env/public";
+import { auth } from "@/lib/auth";
 
 import { z } from "zod";
 
 import { db } from "@/db";
 import { chatsTable, usersTable, usersToChatsTable } from "@/db/schema";
 import { chatRequestSchema, chatDELETERequestSchema } from "@/validators/chat";
-import { eq } from "drizzle-orm";
+import { eq, and, or, desc } from "drizzle-orm";
 
 
 type ChatRequest = z.infer<typeof chatRequestSchema>;
 type ChatDeleteRequest = z.infer<typeof chatDELETERequestSchema>;
+
+export async function GET(request: NextRequest) {
+    try {
+        const session = await auth();
+        if (!session || !session?.user?.id || !session?.user?.username) {
+            return NextResponse.json({ error: "Unauthorized" }, { status: 400 });
+        }
+        const username1 = session.user.username;
+        const url = new URL(request.url);
+        const username2 = url.searchParams.get("username2");
+        const chatId = url.searchParams.get("chatId");
+
+        if (!username2 && !chatId) {
+            return NextResponse.json(
+                { error: "Something went wrong" },
+                { status: 500 },
+            );
+        }
+
+        if (!chatId && username2) {
+            const [chat] = await db
+                .select({
+                    id: chatsTable.id,
+                    chatId: chatsTable.displayId,
+                    username1: chatsTable.username1,
+                    username2: chatsTable.username2,
+                    lastContent: chatsTable.lastContent,
+                })
+                .from(chatsTable)
+                .where(
+                    or(
+                        and(
+                            eq(chatsTable.username1, username1),
+                            eq(chatsTable.username2, username2),
+                        ),
+                        and(
+                            eq(chatsTable.username1, username2),
+                            eq(chatsTable.username2, username1),
+                        )
+                    )
+                )
+                .execute();
+            return NextResponse.json({ chat }, { status: 200 });
+        }
+        else if (!username2 && chatId) {
+            const [chat] = await db
+                .select({
+                    id: chatsTable.id,
+                    chatId: chatsTable.displayId,
+                    username1: chatsTable.username1,
+                    username2: chatsTable.username2,
+                    lastContent: chatsTable.lastContent,
+                })
+                .from(chatsTable)
+                .where(
+                    eq(chatsTable.displayId, chatId),
+                )
+                .execute();
+            return NextResponse.json({ chat }, { status: 200 });
+        }
+    } catch (error) {
+        return NextResponse.json(
+            { error: "Something went wrong" },
+            { status: 500 },
+        );
+    }
+}
 
 export async function POST(request: NextRequest) {
     const data = await request.json();
@@ -104,7 +169,7 @@ export async function PUT(request: NextRequest) {
             .update(chatsTable)
             .set({
                 lastContent: lastContent,
-                lastUpdate: lastUpdate,
+                lastUpdate: new Date(),
             })
             .where(eq(chatsTable.displayId, chatId))
             .returning();

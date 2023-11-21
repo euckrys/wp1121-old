@@ -5,9 +5,12 @@ export type User = {
     provider: "github" | "credentials";
 };
 
-export type Chat = {
+export type ChatType = {
     id: string;
-    title: string;
+    chatId: string;
+    username1: string;
+    username2: string;
+    lastContent: string;
 };
 
 export type MessageType = {

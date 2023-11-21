@@ -3,6 +3,10 @@ import type { NextRequest } from "next/server";
 
 import { z } from "zod";
 
+import Pusher from "pusher";
+import { privateEnv } from "@/lib/env/private";
+import { publicEnv } from "@/lib/env/public";
+
 import { db } from "@/db";
 import { auth } from "@/lib/auth";
 import { announcementsTable } from "@/db/schema";
@@ -55,9 +59,12 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ error: "Invalid request" }, { status: 400 });
     }
 
-    const { messageId, content, username, chatId} = data as AnnouncementRequest;
+    const { messageId, content, username, chatId } = data as AnnouncementRequest;
 
     try {
+        const session = await auth();
+        const userId = session?.user?.id? session.user.id : "";
+
         const result = await db
             .insert(announcementsTable)
             .values({
@@ -75,6 +82,18 @@ export async function POST(request: NextRequest) {
                 },
             })
             .execute();
+
+        const pusher = new Pusher({
+            appId: privateEnv.PUSHER_ID,
+            key: publicEnv.NEXT_PUBLIC_PUSHER_KEY,
+            secret: privateEnv.PUSHER_SECRET,
+            cluster: publicEnv.NEXT_PUBLIC_PUSHER_CLUSTER,
+            useTLS: true,
+        });
+
+        await pusher.trigger(`${chatId}`, "announcement:update", {
+            senderId: userId,
+        });
 
         console.log(result);
     } catch (error) {

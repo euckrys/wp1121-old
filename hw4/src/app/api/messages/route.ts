@@ -16,12 +16,12 @@ import { eq, and, or, ne, asc } from "drizzle-orm";
 type MessageRequest1 = z.infer<typeof messageRequestSchema1>;
 type MessageRequest2 = z.infer<typeof messageRequestSchema2>;
 
-export async function GET(request: NextRequest){
+export async function GET(request: NextRequest) {
     try {
         const session = await auth();
         if (!session || !session?.user?.id || !session?.user?.username) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-          }
+        }
         const username = session.user.username;
         const url = new URL(request.url);
         const chatId = url.searchParams.get("chatId");
@@ -34,27 +34,27 @@ export async function GET(request: NextRequest){
         }
 
         const messages = await db
-        .select({
-            id: messagesTable.messageId,
-            content: messagesTable.content,
-            username: messagesTable.username,
-        })
-        .from(messagesTable)
-        .where(
-            and(
-                eq(messagesTable.chatId, chatId),
+            .select({
+                id: messagesTable.messageId,
+                content: messagesTable.content,
+                username: messagesTable.username,
+            })
+            .from(messagesTable)
+            .where(
                 and(
-                    or(
-                        eq(messagesTable.isUnsendToMe, false),
-                        and(
-                            eq(messagesTable.isUnsendToMe, true),
-                            ne(messagesTable.username, username),
+                    eq(messagesTable.chatId, chatId),
+                    and(
+                        or(
+                            eq(messagesTable.isUnsendToMe, false),
+                            and(
+                                eq(messagesTable.isUnsendToMe, true),
+                                ne(messagesTable.username, username),
+                            )
                         )
                     )
                 )
             )
-        )
-        .orderBy(asc(messagesTable.createdAt))
+            .orderBy(asc(messagesTable.createdAt))
 
         return NextResponse.json({ messages }, { status: 200 });
 
@@ -103,13 +103,6 @@ export async function POST(request: NextRequest) {
 
             await pusher.trigger(`${result.chatId}`, "message:update", {
                 senderId: userId,
-                message: {
-                    messageId: result.messageId,
-                    content: result.content,
-                    username: result.username,
-                    chatId: result.chatId,
-                    isUnsendToMe: result.isUnsendToMe,
-                },
             });
 
             console.log(result);

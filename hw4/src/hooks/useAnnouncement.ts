@@ -1,6 +1,8 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+import { AnnouncementType } from "@/lib/types/db";
+
 export default function useAnnouncement() {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
@@ -9,7 +11,7 @@ export default function useAnnouncement() {
         chatId,
     }: {
         chatId: string;
-    }) => {
+    }): Promise<AnnouncementType | undefined> => {
         if (loading) return;
         setLoading(true);
 

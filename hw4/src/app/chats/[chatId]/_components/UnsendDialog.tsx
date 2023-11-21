@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+
 import {
     Dialog,
     DialogContent,
@@ -12,6 +13,7 @@ import {
 } from "@/components/ui/dialog";
 
 import useMessage from "@/hooks/useMessage";
+import useChat from "@/hooks/useChat";
 
 type UnsendDialogProps = {
     messageId: string;
@@ -30,7 +32,8 @@ export default function UnsendDialog({
     showDialog,
     onclose,
 }: UnsendDialogProps) {
-    const { postMessage, deleteMessage } = useMessage();
+    const { postMessage, deleteMessage, loading: loading1 } = useMessage();
+    const { updateChat, loading: loading2 } = useChat();
 
     const handleUnsend = async () => {
         if (!messageId) return;
@@ -58,6 +61,14 @@ export default function UnsendDialog({
             await deleteMessage({
                 messageId,
             });
+            // if (content ==)
+
+            // await updateChat({
+            //     chatId,
+            //     username1: username,
+            //     username2: username,
+            //     lastContent: "",
+            // })
         } catch (error) {
             console.log(error);
             alert("Error deleting message");
@@ -78,10 +89,22 @@ export default function UnsendDialog({
                             你想對誰移除這則訊息
                         </DialogDescription>
                     </DialogHeader>
-                        <Button onClick={handleUnsend} className="font-semibold">對你移除訊息</Button>
-                        <Button onClick={handleDelete} className="font-semibold">收回訊息</Button>
+                        <Button
+                            onClick={handleUnsend}
+                            className="font-semibold"
+                            disabled={loading1 || loading2}
+                        >
+                            對你移除訊息
+                        </Button>
+                        <Button
+                            onClick={handleDelete}
+                            className="font-semibold"
+                            disabled={loading1 || loading2}
+                        >
+                            收回訊息
+                        </Button>
                     <DialogFooter>
-                    <Button onClick={onclose} className="font-semibold">Cancel</Button>
+                        <Button onClick={onclose} className="font-semibold">Cancel</Button>
                     </DialogFooter>
                 </DialogContent>
             </Dialog>

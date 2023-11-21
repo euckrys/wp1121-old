@@ -7,6 +7,56 @@ export default function useChat() {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
 
+    const getChat = async ({
+        username2,
+    }: {
+        username2: string;
+    }) => {
+        if (loading) return;
+        setLoading(true);
+
+        const res = await fetch(`/api/chats?username2=${username2}`, {
+            method: "GET",
+        });
+
+        if (!res.ok) {
+            const body = await res.json();
+            throw new Error(body.error);
+        }
+
+        const data = await res.json();
+        const chat = data.chat;
+
+        router.refresh();
+        setLoading(false);
+        return chat;
+    }
+
+    const getChatUsername = async ({
+        chatId,
+    }: {
+        chatId: string;
+    }) => {
+        if (loading) return;
+        setLoading(true);
+
+        const res = await fetch(`/api/chats?chatId=${chatId}`, {
+            method: "GET",
+        });
+
+        if (!res.ok) {
+            const body = await res.json();
+            throw new Error(body.error);
+        }
+
+        const data = await res.json();
+        const chat = data.chat;
+
+        router.refresh();
+        setLoading(false);
+        return chat;
+    }
+
     const postChat = async ({
         username1,
         username2,
@@ -39,13 +89,13 @@ export default function useChat() {
         username1,
         username2,
         lastContent,
-        lastUpdate,
+        // lastUpdate,
     }: {
         chatId: string;
         username1: string,
         username2: string,
         lastContent: string,
-        lastUpdate: Date,
+        // lastUpdate: Date,
     }) => {
         if (loading) return;
         setLoading(true);
@@ -57,7 +107,7 @@ export default function useChat() {
                 username1,
                 username2,
                 lastContent,
-                lastUpdate,
+                // lastUpdate,
             }),
         });
 
@@ -95,8 +145,11 @@ export default function useChat() {
     }
 
     return {
+        getChat,
+        getChatUsername,
         postChat,
         updateChat,
         deleteChat,
+        loading,
     }
 }
