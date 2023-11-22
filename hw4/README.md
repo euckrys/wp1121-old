@@ -1,5 +1,7 @@
 # Run the project
 
+**請詳閱README**
+
 本次作業使用 Nextjs, pusher, Github OAuth, POSTGRES database(docker),
 
 ## 1. Install dependencies
@@ -12,7 +14,11 @@ yarn
 
 請使用自己的Pusher Keys
 
-**注意:請取消**APP Settings中的`Enable authorized connection`選項，否則會有30秒的連線限制。
+**注意**
+
+**注意**
+
+**注意: 請取消APP Settings中的`Enable authorized connection`選項，否則會有30秒的連線限制。**
 
 ## 3. Get Github OAuth credentials
 
