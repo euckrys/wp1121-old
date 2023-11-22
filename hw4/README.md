@@ -10,12 +10,13 @@ yarn
 
 ## 2. Get Pusher credentials
 
-請使用自己的Pusher Key
-注意:請取消APP Settings中的`Enable authorized connection`選項，否則會有30秒的連線限制。
+請使用自己的Pusher Keys
+
+**注意:請取消**APP Settings中的`Enable authorized connection`選項，否則會有30秒的連線限制。
 
 ## 3. Get Github OAuth credentials
 
-請使用自己的
+請使用自己的 Github OAuth credentials
 
 ## 4. Create `.env.local` file in the project root.
 
@@ -23,7 +24,7 @@ yarn
 cp .env.example .env.local
 ```
 
-請填寫以下內容，請確保KEY跟DB URL都是有效的：
+請填寫以下內容，請確保 KEYs 跟 DB URL 都是有效的：
 
 ```text
 POSTGRES_URL=
@@ -92,7 +93,7 @@ yarn dev
 
     Also, please remember to add these keys to your environment variables handler in `src/lib/env/private.ts` and `src/lib/env/public.ts`. You can view those two files for more details.
 
-6.  Go to `App Settings` tab, scroll down to `Enable authorized connections` and $$don't enable it$$.
+6.  Go to `App Settings` tab, scroll down to `Enable authorized connections` and **don't enable it**.
 
 # NextAuth Setup
 
