@@ -117,7 +117,6 @@ export default function ChatPage({
         if (!chatId) return;
 
         try {
-            console.log(chatId);
             await deleteChat({
                 chatId,
             });

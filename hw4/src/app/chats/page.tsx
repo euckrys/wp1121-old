@@ -33,11 +33,9 @@ export default async function ChatsPage() {
       .orderBy(desc(chatsTable.lastUpdate))
       .execute();
 
-      console.log(chats);
-
     const headersList = headers();
     const currentURL = headersList.get("referer");
-    console.log(currentURL);
+
     if (chats && chats.length > 0 && (currentURL?.endsWith("localhost:3000/") || currentURL?.endsWith("localhost:3000/chats"))) {
         redirect(`/chats/${chats[0].chatId}`);
     }
