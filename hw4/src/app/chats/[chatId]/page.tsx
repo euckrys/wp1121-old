@@ -8,7 +8,7 @@ import { pusherClient } from "@/lib/pusher/client";
 import useMessage from "@/hooks/useMessage";
 import useAnnouncement from "@/hooks/useAnnouncement";
 import useChat from "@/hooks/useChat";
-import { MessageType, AnnouncementType, ChatType } from "@/lib/types/db";
+import type{ MessageType, AnnouncementType, ChatType } from "@/lib/types/db";
 import { useEffect, useState, useRef } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -97,6 +97,7 @@ export default function ChatPage({
         return () => {
             channel.unbind();
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [chatId, messages, announcement, chat]);
 
 
@@ -106,6 +107,7 @@ export default function ChatPage({
             fetchAnnouncement();
             fetchChat();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [nowId]);
 
     const { deleteChat }= useChat();

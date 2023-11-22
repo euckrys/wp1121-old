@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-import { z } from "zod";
+import type { z } from "zod";
 
 import Pusher from "pusher";
 import { privateEnv } from "@/lib/env/private";

@@ -6,7 +6,7 @@ import { privateEnv } from "@/lib/env/private";
 import { publicEnv } from "@/lib/env/public";
 import { auth } from "@/lib/auth";
 
-import { z } from "zod";
+import type { z } from "zod";
 
 import { db } from "@/db";
 import { messagesTable } from "@/db/schema";

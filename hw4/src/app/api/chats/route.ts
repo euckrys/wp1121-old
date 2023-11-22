@@ -3,12 +3,12 @@ import type { NextRequest } from "next/server";
 
 import { auth } from "@/lib/auth";
 
-import { z } from "zod";
+import type { z } from "zod";
 
 import { db } from "@/db";
 import { chatsTable, usersTable, usersToChatsTable } from "@/db/schema";
 import { chatRequestSchema, chatDELETERequestSchema } from "@/validators/chat";
-import { eq, and, or, desc } from "drizzle-orm";
+import { eq, and, or } from "drizzle-orm";
 
 
 type ChatRequest = z.infer<typeof chatRequestSchema>;
@@ -156,7 +156,7 @@ export async function PUT(request: NextRequest) {
         return NextResponse.json({ error: "Invalid request" }, { status: 400 });
     }
 
-    const { chatId, lastContent, lastUpdate } = data as ChatRequest;
+    const { chatId, lastContent } = data as ChatRequest;
 
     try {
         if (!chatId) {

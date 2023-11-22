@@ -1,10 +1,6 @@
 "use client"
 
 import MessageInput from "./_components/MessageInput";
-import { Button } from "../../../components/ui/button";
-
-import useChat from "../../../hooks/useChat";
-import { useRouter } from "next/navigation";
 
 type Props = {
     children: React.ReactNode;

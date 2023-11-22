@@ -3,28 +3,26 @@ import { RxAvatar } from "react-icons/rx";
 
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { headers } from "next/headers";
 
 import { Button } from "@/components/ui/button";
 import { auth } from "@/lib/auth";
 import { publicEnv } from "@/lib/env/public";
 
-import Search from "./Search";
 import { db } from "@/db";
 import { chatsTable } from "@/db/schema";
-import { and, eq, desc, or, like } from "drizzle-orm";
+import { and, eq, desc, or } from "drizzle-orm";
 import Chat from "./Chat";
 import SearchInput2 from "./SearchInput2";
+import type { ChatType } from "@/lib/types/db";
 
 export default async function Navbar() {
   const session = await auth();
   if (!session || !session?.user?.id) {
     redirect(publicEnv.NEXT_PUBLIC_BASE_URL);
   }
-  const userId1 = session.user.id;
   const username1 = session.user.username;
 
-  const chats = await db
+  const chats: ChatType[] = await db
     .select({
       id: chatsTable.id,
       chatId: chatsTable.displayId,
@@ -39,7 +37,6 @@ export default async function Navbar() {
           eq(chatsTable.username1, username1),
           eq(chatsTable.username2, username1),
         ),
-        // like(chatsTable.username1, ),
       )
     )
     .orderBy(desc(chatsTable.lastUpdate))
@@ -61,7 +58,7 @@ export default async function Navbar() {
               type={"submit"}
               className="hover:bg-slate-200"
             >
-              <p className="text-lg">Sign Out</p>
+              <p className="text-lg underline">Sign Out</p>
             </Button>
           </Link>
         </div>

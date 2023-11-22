@@ -6,20 +6,11 @@ import { chatsTable } from "@/db/schema";
 import { and, eq, desc, or } from "drizzle-orm";
 import { headers } from "next/headers";
 
-type pageProps = {
-    searchParams: {
-        search?: string;
-    }
-}
-
-export default async function ChatsPage({
-    searchParams: { search },
-}: pageProps) {
+export default async function ChatsPage() {
     const session = await auth();
     if (!session || !session?.user?.id) {
       redirect(publicEnv.NEXT_PUBLIC_BASE_URL);
     }
-    const userId1 = session.user.id;
     const username1 = session.user.username;
 
     const chats = await db

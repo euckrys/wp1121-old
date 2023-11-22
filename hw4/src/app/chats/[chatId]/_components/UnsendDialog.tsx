@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
 
 import {
     Dialog,
@@ -13,7 +12,6 @@ import {
 } from "@/components/ui/dialog";
 
 import useMessage from "@/hooks/useMessage";
-import useChat from "@/hooks/useChat";
 
 type UnsendDialogProps = {
     messageId: string;
@@ -32,8 +30,7 @@ export default function UnsendDialog({
     showDialog,
     onclose,
 }: UnsendDialogProps) {
-    const { postMessage, deleteMessage, loading: loading1 } = useMessage();
-    const { updateChat, loading: loading2 } = useChat();
+    const { postMessage, deleteMessage, loading } = useMessage();
 
     const handleUnsend = async () => {
         if (!messageId) return;
@@ -61,14 +58,6 @@ export default function UnsendDialog({
             await deleteMessage({
                 messageId,
             });
-            // if (content ==)
-
-            // await updateChat({
-            //     chatId,
-            //     username1: username,
-            //     username2: username,
-            //     lastContent: "",
-            // })
         } catch (error) {
             console.log(error);
             alert("Error deleting message");
@@ -92,14 +81,14 @@ export default function UnsendDialog({
                         <Button
                             onClick={handleUnsend}
                             className="font-semibold"
-                            disabled={loading1 || loading2}
+                            disabled={loading}
                         >
                             對你移除訊息
                         </Button>
                         <Button
                             onClick={handleDelete}
                             className="font-semibold"
-                            disabled={loading1 || loading2}
+                            disabled={loading}
                         >
                             收回訊息
                         </Button>

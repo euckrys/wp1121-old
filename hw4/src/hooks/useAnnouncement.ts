@@ -1,7 +1,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-import { AnnouncementType } from "@/lib/types/db";
+import type { AnnouncementType } from "@/lib/types/db";
 
 export default function useAnnouncement() {
     const [loading, setLoading] = useState(false);

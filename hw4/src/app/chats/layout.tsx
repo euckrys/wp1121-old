@@ -5,7 +5,7 @@ type ChatLayoutProps = {
     params: { chatId: string };
 };
 
-export default function ChatLayout({ children, params } : ChatLayoutProps) {
+export default function ChatLayout({ children } : ChatLayoutProps) {
     return (
         <main className="flex-rows fixed top-0 flex h-screen w-full overflow-hidden">
             <nav className="flex w-2/6 flex-col overflow-y-scroll border-r pb-10">

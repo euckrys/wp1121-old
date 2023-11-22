@@ -6,7 +6,7 @@ export type User = {
 };
 
 export type ChatType = {
-    id: string;
+    id: number;
     chatId: string;
     username1: string;
     username2: string;
