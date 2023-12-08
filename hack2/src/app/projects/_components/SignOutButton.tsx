@@ -6,7 +6,6 @@ import { signOut, useSession } from "next-auth/react";
 
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 import { publicEnv } from "@/lib/env/public";
 
 export default function SignOutButton() {
