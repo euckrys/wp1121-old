@@ -129,7 +129,16 @@ export default function HomePage() {
                         recentAppointmentTime={recentAppointTime}
                       />
                     ) : (
-                      <NullAppointment/>
+                      <div className="mt-20 h-full">
+                        <Card className="h-full shadow-xl">
+                          <CardContent className="flex flex-col items-center h-full">
+                            <p className="font-bold text-2xl mt-8 underline">Recent Appointment</p>
+                            <div className="flex flex-col justify-center items-center h-full">
+                              沒有近期的預約
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </div>
                     )}
                   </div>
                   <div className="w-full justify-self-end self-end">
@@ -148,19 +157,4 @@ export default function HomePage() {
       )}
     </>
   );
-}
-
-export function NullAppointment() {
-  return (
-    <div className="mt-20 h-full">
-      <Card className="h-full shadow-xl">
-        <CardContent className="flex flex-col items-center h-full">
-          <p className="font-bold text-2xl mt-8 underline">Recent Appointment</p>
-          <div className="flex flex-col justify-center items-center h-full">
-            沒有近期的預約
-          </div>
-        </CardContent>
-      </Card>
-    </div>
-  )
 }
